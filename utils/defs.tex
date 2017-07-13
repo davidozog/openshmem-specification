@@ -455,7 +455,7 @@ minus .2ex}{-1em}{\normalsize\sf}}
 \newenvironment{apiexamples}{
 \newcommand{\apicexample}[3]{
     ##1
-    \lstinputlisting[language={C}, tabsize=2,
+    \lstinputlisting[language={C}, tabsize=2, escapechar={}, % Note: without an empty escapechar, "||..." is escaped.
     basicstyle=\ttfamily\footnotesize, morekeywords={size_t}]{##2}
     ##3 }
 \newcommand{\apifexample}[3]{

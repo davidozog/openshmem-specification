@@ -79,6 +79,11 @@ CALL SHMEM_BARRIER(PE_start, logPE_stride, PE_size, pSync)
     option enabled.  Calls to \FUNC{shmem\_ctx\_quiet} can be performed prior
     to calling the barrier routine to ensure completion of operations issued on
     private contexts.}
+
+    \textcolor{red}{REWORDING SUGGESTION: The \FUNC{shmem\_barrier}
+    routine does not quiet private contexts.  A call to
+    \FUNC{shmem\_ctx\_quiet} prior to \FUNC{shmem\_barrier} ensures
+    completion of operations issued on private contexts.}
 }
 
 \begin{apiexamples}

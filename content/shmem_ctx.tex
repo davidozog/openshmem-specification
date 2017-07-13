@@ -4,11 +4,13 @@ All \openshmem RMA, AMO, and memory ordering routines are
 performed on a communication context.  The communication context defines an
 independent ordering and completion environment, allowing users to manage the
 overlap of communication with computation and also to manage communication
-operations performed by separate threads within a multithreaded \ac{PE}.  For
-example, in single-threaded environments, contexts can be used to pipeline
-communication and computation.  In multithreaded environments, contexts can
-additionally provide thread isolation, eliminating overheads resulting from
-thread interference within the communication subsystem.
+operations performed by separate threads within a multithreaded \ac{PE}.
+\textcolor{red}{(Manju suggests moving the following to a Note or prefacing it with a
+``\textit{Rationale}":) For example, in single-threaded environments, contexts can
+be used to pipeline communication and computation.  In multithreaded
+environments, contexts can additionally provide thread isolation, eliminating
+overheads resulting from thread interference within the communication
+subsystem.}
 
 Context handles are of type \CTYPE{shmem\_ctx\_t} and are valid for
 language-level assignment and comparison.  A handle to the desired context is
@@ -112,6 +114,20 @@ void shmem_ctx_destroy(shmem_ctx_t ctx);
 
     A context with the \CONST{SHMEM\_CTX\_PRIVATE} option enabled must be
     destroyed by the thread that created it.
+
+    \textcolor{red}{OPTION A1: The \CONST{SHMEM\_CTX\_DEFAULT} context may
+    be destroyed by a call to \FUNC{shmem\_ctx\_destroy}, but communication
+    operations may no longer complete on the default context.}
+
+    \textcolor{red}{OPTION A2: The \CONST{SHMEM\_CTX\_DEFAULT} context will
+    \textit{not} be destroyed by a call to \FUNC{shmem\_ctx\_destroy}.
+    Typically, a call to \FUNC{shmem\_finalize} releases resources associated
+    with the default context}.
+
+    \textcolor{red}{All other shareable contexts must be destroyed explicitly
+    with a call to \FUNC{shmem\_ctx\_destroy} by (some?, any?, all?) thread(s) within the PE that
+    called \FUNC{shmem\_ctx\_create}}.
+
 }
 
 \begin{apiexamples}
@@ -136,6 +152,9 @@ void shmem_ctx_destroy(shmem_ctx_t ctx);
     {}
 
 \end{apiexamples}
+
+\textcolor{red}{Why no call to \FUNC{shmem\_ctx\_destroy} in the pipeline example?  Is
+it ok to assume all shared contexts are destroyed in finalize?}
 
 \end{apidefinition}
 \color{black}

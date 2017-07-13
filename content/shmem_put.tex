@@ -58,6 +58,11 @@ CALL SHMEM_REAL_PUT(dest, source, nelems, pe)
     \apiargument{IN}{ctx}{Context on which to perform the operation.  When none
     is provided, \CONST{SHMEM\_CTX\_DEFAULT} is used.}
     }
+    \textcolor{red}{\\REWORDING FOR CLARITY:\\
+    \apiargument{IN}{ctx}{Context on which to perform the operation.  When this argument  
+    is not provided, \CONST{SHMEM\_CTX\_DEFAULT} is used.}
+    \\WOULD BE CHANGED THROUGHOUT THE API...\\
+  }
 \end{apiarguments}
 
 \apidescription{

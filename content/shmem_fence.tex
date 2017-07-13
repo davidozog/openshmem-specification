@@ -52,6 +52,11 @@ CALL SHMEM_FENCE
     The \FUNC{shmem\_quiet} routine should be called if completion of PUT{},
     \acp{AMO}, and memory store routines to symmetric data objects is desired
     when multiple remote \acp{PE} are involved.
+
+    \textcolor{red}{MANJU SUGGESTED EXPLAINING ORDERING ISOLATION HERE: In
+    multithreaded environments, \FUNC{shmem\_fence} can provide thread
+    ordering isolation between different contexts.}
+
 }
 
 \begin{apiexamples}
