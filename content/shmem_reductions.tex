@@ -275,7 +275,7 @@ where \TYPE{} is one of the integer, real, or complex types supported for the PR
 \apidescription{
     \openshmem reduction routines are collective routines over an
     existing \openshmem team that compute one or more reductions across symmetric
-    arrays on multiple \acp{PE}.  A reduction performs an associative binary routine
+    arrays on multiple \acp{PE}.  A reduction performs an binary operation
     across a set of values.
 
     The \VAR{nreduce} argument determines the number of separate reductions to
@@ -315,7 +315,7 @@ where \TYPE{} is one of the integer, real, or complex types supported for the PR
 \begin{DeprecateBlock}
     \openshmem reduction routines are collective routines over an active set 
 	that compute one or more reductions across symmetric
-    arrays on multiple \acp{PE}.  A reduction performs an associative binary routine
+    arrays on multiple \acp{PE}.  A reduction performs an binary operation
     across a set of values.
 
     The \VAR{nreduce} argument determines the number of separate reductions to
@@ -370,6 +370,17 @@ where \TYPE{} is one of the integer, real, or complex types supported for the PR
     when \CONST{\_\_STDC\_NO\_COMPLEX\_\_} is defined to 1}, an \openshmem
     implementation is not required to provide support for these
     complex-typed interfaces.
+
+    The binary operations performed by \openshmem reductions are intended to be
+    associative and commutative for utility and reproducibility, but in
+    practice these properties are not strictly required.
+    When applying a reduction to floating-point numbers, the binary operation
+    may not be exactly associative and/or commutative due to the inherent
+    inaccuracies of floating-point arithmetic caused by rounding errors and
+    finite precision.
+    This can lead to slight variations in the result of \openshmem reductions
+    on floating-point datatypes, especially when the number of elements is
+    large and/or when values have highly varying magnitudes.
 }
 
 \apireturnvalues{
