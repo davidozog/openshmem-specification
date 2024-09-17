@@ -378,10 +378,26 @@ where \TYPE{} is one of the integer, real, or complex types supported for the PR
     finite precision.
     This can lead to variations in the result of \openshmem arithmetic reduction operations
     on floating-point datatypes.
+
+    Each \ac{PE} in the team must produce a \dest{} array that is bitwise
+    identical to the \dest{} arrays produced by all other \acp{PE} in the team.
+
+    The result of any given \openshmem reduction is reproducible across job
+    execution environments.
+    In other words, repetition of the same reduction operation on the same
+    input \source{} array, same team, and same overall job configuration must
+    yield bitwise identical results across all \dest{} arrays of the \acp{PE}
+    in the team.
 }
 
 \apireturnvalues{
   Zero on successful local completion. Nonzero otherwise.
+}
+
+\parimpnotes{
+    Implementors are encouraged to ensure that repitition of a given \openshmem
+    reduction across \textit{different} jobs configurations will yield bitwise
+    identical results in the \dest{} arrays of all \acp{PE} in the team.
 }
 
 \begin{apiexamples}
