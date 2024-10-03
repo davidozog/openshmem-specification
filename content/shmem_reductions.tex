@@ -381,13 +381,6 @@ where \TYPE{} is one of the integer, real, or complex types supported for the PR
 
     Each \ac{PE} in the team must produce a \dest{} array that is bitwise
     identical to the \dest{} arrays produced by all other \acp{PE} in the team.
-
-    The result of any given \openshmem reduction is reproducible across job
-    execution environments.
-    In other words, repetition of the same reduction operation on the same
-    input \source{} array, same team, and same overall job configuration must
-    yield bitwise identical results across all \dest{} arrays of the \acp{PE}
-    in the team.
 }
 
 \apireturnvalues{
@@ -396,8 +389,8 @@ where \TYPE{} is one of the integer, real, or complex types supported for the PR
 
 \apiimpnotes{
     Implementers are encouraged to ensure that repetition of a given \openshmem
-    reduction across \textit{different} jobs configurations will yield bitwise
-    identical results in the \dest{} arrays of all \acp{PE} in the team.
+    reduction within a job yields bitwise identical results in the \dest{}
+    arrays of all \acp{PE} in the team.
 }
 
 \begin{apiexamples}
