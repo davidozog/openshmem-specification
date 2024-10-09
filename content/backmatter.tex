@@ -740,8 +740,8 @@ The following list describes the specific changes in \openshmem[1.6]:
     additional arguments. \label{changelog:pcontrol}
 \ChangelogRef{subsec:shmem_pcontrol}
 %
-\item Corrected the requirements regarding associative and commutative binary
-    operations used in \openshmem reductions.
+\item Clarified that \openshmem reductions on floating-point datatypes are not
+    strictly associative and/or commutative.
     \label{changelog:reduction_associativity}
 \ChangelogRef{subsec:shmem_reductions}
 %
@@ -1331,8 +1331,10 @@ must account for all errata associated with that version as indicated below.
      \FUNC{shmem\_pcontrol} to indicate that the value should be greater than 2 to enable
      profiling with profile library defined effects and additional arguments
         (\ref{changelog:v1.6}.\ref{changelog:pcontrol}).
-  \item Corrected the requirements regarding associative and commutative binary
-      operations used in \openshmem reductions
+  \item Clarified that \openshmem reductions on floating-point datatypes are
+     not strictly associative and/or commutative. A future version of the
+     \openshmem specification may clarify the behavior of reductions on
+     floating-point datatypes.
         (\ref{changelog:v1.6}.\ref{changelog:reduction_associativity}).
 \end{enumerate}
 
